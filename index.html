@@ -1,8 +1,1896 @@
-<!DOCTYPE html>
-<html>
-<body>
+<html><head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+  <script type="text/x-mathjax-config">
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ["\(", "\)"]],
+        processEscapes: true,
+      }
+    }
+  </script><style>
+  :root {
+  --edge: 128px;
+  --edge_three: 2px;
+  --width: 410px;
+  --pagewidth: 1078px;
+  --width3: 357px;
+  --width4: 267px;
+  --width5: 213px;
+  --zwidth: 164.0px;
+  }
+  body {
+      font-family: IBM Plex Sans, sans-serif;
+      padding: 20px 0;
+      font-size: 14pt;
+      font-weight: 100;
+      line-height: 1.3em;
+      hyphens: auto;
+      -ms-hyphens: auto;
+      -webkit-hyphens: auto;
+      margin: auto;
+      width: var(--pagewidth);
+      position: relative;
+      /* background-color:  #fbfefa; */
+  }
+  
+  b {
+      font-weight: 300;
+  }
+  
+  /* h1 {
+      font-variant: small-caps;
+  } */
+  
+  
+  h1, h2, h3 {
+      /* font-family: Lilita One, cursive; */
+      font-weight: 500;
+      text-align: center;
+  }
+  
+  .section-title, details > summary {
+      padding: 0.3em 0.5em;
+      font-weight: 500;
+      text-align: left;
+      font-size: 1.3em;
+      background-color: #dfe9ec;
+      /* list-style: none; */
+      border: 0.5px solid #9da8ab;
+      border-radius: 5px;
+      margin: 4px 0;
+  }
+  
+  .warning {
+    padding: 0.5em;
+    background-color: #ffffe4;
+    /* list-style: none; */
+    border: 0.5px solid #f7edae;
+    border-radius: 5px;
+    margin: 8px 2px;
+  }
+  
+  .section-content {
+      padding-bottom: 1em;
+  }
+  
+  p {
+      text-align: justify;
+  }
+  
+    title {
+      font-size: 28px;
+      font-weight: bold;
+  }
+  
+  /* Style the buttons that are used to open and close the accordion panel */
+  .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 8px;
+      margin-top: 20px;
+      margin-bottom: 2px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      border-radius: 5px 5px 0px 0px;
+    }
+    
+    .accordion:active, .accordion:focus {
+      border-radius: 5px;
+    }
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active, .accordion:hover {
+      background-color: #ccc;
+    }
+    
+    .accordion:after {
+      content: '\002B';
+      color: #777;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    
+    .active:after {
+      content: "\2212";
+    }
+  
+    .panel {
+      display: block;
+      position: relative;
+      border: 1px solid #eee;
+      border-radius: 0 0 5px 5px;
+      padding-bottom: 1em;
+      background-color: #fff;
+    }
+  
+    /* Style the accordion panel. Note: hidden by default */
+    .panel video {
+      /* border: 1px solid #d4d4d4; */
+      margin: 0px;
+      padding: 0px;
+    }
+  
+    button {
+      font-size: 16px;
+      font-family: monospace;
+      font-weight: bold;
+    }
+  
+   .wrapper-box {
+      display: block;
+    }
+  
+    .caption {
+      padding: 0.1em 0;
+      margin: 0;
+      font-size: 0.8em;
+      font-weight: 500;
+      text-align: center;
+    }
+  
+    .box {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      float: left;
+      clear: right;
+    }
+  
+    .bottom-left {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 2px #444;
+    }
+  
+    .top-left {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 2px #444;
+    }
+    .top-left-2 {
+      position: absolute;
+      left: calc(var(--width) + 8px);
+      top: 8px;
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 1px 1px 2px #444;
+    }
+  
+    button img {
+      border-radius: 15%;
+      width: 46px;
+      margin-right: 10px;
+    }
+  
+    
+    .vid-zoom-lens {
+      position: absolute;
+      border: 2px solid #FBB040;
+      /*set the size of the lens:*/
+      /* width: var(--zwidth);
+      height: var(--zwidth); */
+      border-radius: 3%;
+      box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+    }
+    
+    .two-block {
+      width: var(--width);
+      height: var(--width);
+    }
+  
+    .three-block {
+      width: var(--width3);
+      height: var(--width3);
+    }
+  
+    .four-block {
+      width: var(--width4);
+      height: var(--width4);
+    }
+  
+    .five-block {
+      width: var(--width5);
+      height: var(--width5);
+    }
+  
+    .vid-box {
+      outline: 1px solid #eee;
+      overflow: hidden;
+      display: block;
+    }
+  
+    .vid-container {
+      float: left;
+      display: block;
+    }
+  
+    #video-compare-container {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+    }
+    #video-compare-container > video {
+      width: 100%;
+      position: absolute;
+      top: 0; height: 100%;
+    }
+    #video-clipper {
+      width: 50%; position: absolute;
+      top: 0; bottom: 0;
+      overflow: hidden;
+    }
+    #video-clipper video {
+      width: 200%;
+      position: absolute;
+      height: 100%;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 90%;
+      font-weight: 100;
+    }
+    
+    th {
+      background-color: #eee;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    .ours {
+      background-color: #deecf0fe;
+    }
+    /* tr:nth-child(even) {
+      background-color: #eee;
+    } */
+  </style>
+  </head>
+  <body>
+  <h1><span style="font-variant: small-caps;">SuperGaussian</span>:</h1>
+  <h2>Repurposing Video Models for 3D Super Resolution</h2>
+  <h3>Anonymous ECCV Submission 4210</h3>
+  <div class="panel" style="display: block; border: none; height: 640px; padding: 5px var(--edge)">
+  <p class="warning" style="text-align: center; font-size: 90%">⚠️&nbsp;This page contains a large number of videos. If they don't play or go out of sync, please reload.<br>We recommend to use Chrome as your browser.</p>
+  <div class="vid-container">
+  <div class="vid-box">
+  <video class="chestnut" width="820" height="410" autoplay controls loop muted>
+  <source src="resources/Teaser/chestnut_comp.mp4" type="video/mp4">
+  </video>
+  </div>
+  <p>We present <span style="font-variant: small-caps;">SuperGaussian</span>, a novel method that repurposes existing video upsampling methods for the 3D superresolution task. <span style="font-variant: small-caps;">SuperGaussian</span> can handle various input types such as NeRFs, Gaussian Splats, reconstructions obtained from noisy scans, models that are generated by recent text-to-3D methods, or low-poly meshes. <span style="font-variant: small-caps;">SuperGaussian</span> generates high resolution 3D outputs with rich geometric and texture details in the form of Gaussian Splats.</p>
+  </div>
+  </div>
+  <h2 class="section-title">Abstract</h2><p>We present a simple, modular, and generic method that <b>upsamples coarse 3D models</b> by adding geometric and appearance details. While generative 3D models now exist, they do not yet match the quality of their counterparts in image and video domains. We demonstrate that it is possible to directly <b>repurpose existing (pre-trained) video models for 3D super-resolution</b> and thus sidestep the problem of the shortage of large repositories of high-quality 3D training models. We describe how to repurpose a video upsampling model – which are not 3D consistent – and combine them with 3D consolidation to produce <b>3D-consistent results</b>. As output, we produce high-quality Gaussian Splat models, which are object-centric, and effective. Our method is category-agnostic and can be easily incorporated into existing 3D workflows. We evaluate our proposed <b><span style="font-variant: small-caps;">SuperGaussian</span></b> on a variety of 3D inputs, which are diverse both in terms of complexity and representation (e.g., Gaussian Splats or NeRFs), and demonstrate that our simple method significantly improves the fidelity of the final 3D models.</p>
+  
+  <h2 class="section-title">Video Overview</h2>
+  <div class="panel" style="display: block; height: 576; padding: 5px calc((var(--pagewidth) - 864)/2)">
+    <div class="vid-box">
+  <video class="chestnut" width="864" height="576"  controls >
+  <source src="supplementary_video.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>  
 
-<h1>SuperGaussian</h1>
+  <h2 class="section-title">Pipeline</h2><div class="panel" style="padding: 5px 4px; height: 521px; border: none;">
+  <p> Given an input low-res 3D representation, which can be in various formats, we first sample a smooth camera trajectory and render an intermediate low-resolution video. We first upsample this video using existing video upsamplers and obtain a higher resolution 3D representation that has sharper and more vivid details. Next, we perform 3D optimization to improve geometric and texture details. Our method, <b><span style="font-variant: small-caps;">SuperGaussian</span></b>, produces a final 3D representation in the form of high-resolution Gaussian Splats.</p>
+  <p class="warning" style="font-size: 90%;">⚠️&nbsp;In our main submission, we forgot to remove descriptions about an extra video restoration step in the captions of our paper draft. Due to degradation that it may potentially introduce, we do not use it in our final pipeline, hence this was not used to generate our results. We apologize for the confusion!</p>
 
-</body>
-</html>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video width="213" height="213" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dinosaur_low_res.mp4" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Low-res input</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box" style="outline: none; height='213px'">
+  <video width="267" autoplay controls loop muted>
+  <source src="resources/Pipeline/trajectories.mp4" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Trajectory sampling</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box" style="outline: none;">
+  <img width="375" src="resources/Pipeline/pipeline.png">
+  </div>
+  <p class="caption">Video Upsampling</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video width="213" height="213" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dinosaur_ours_with_fitting_iter_3.mp4" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Reconstruction</p>
+  </div>
+  </div>
+  </div>
+  <details open>
+  <summary>Quantitative Comparison</summary>
+
+
+  <div class="panel" style="display: block; height: 980px; padding: 5px calc(var(--edge) - 16px)">
+    <h3>Comparison on MV-ImgNet to upsample low-res GSplats</h3>
+    <p>
+      We compare our methods against baselines using perceptual metrics. Our method, even though it is generic, consistently produces the best quantitative results. We encourage the reader to inspect the visual results in the later section, which highlights that the visual quality of our method surpasses the baselines.
+    </p>
+    <table>
+      <tr>
+        <th>Method</th>
+        <th>LPIPS ↓</th>
+        <th>NIQE ↓</th>
+        <th>FID ↓</th>
+        <th>IS ↑</th>
+      </tr>
+      <tr>
+        <td>Instruct-NeRF2NeRF<sup>1</sup></td>
+        <td>0.1867</td>
+        <td>8.33</td>
+        <td>32.56</td>
+        <td>10.52 ± 1.06</td>
+      </tr>
+      <tr>
+        <td>Super-NeRF<sup>2</sup></td>
+        <td>0.2204</td>
+        <td>8.84</td>
+        <td>37.54</td>
+        <td>10.40 ± 1.03</td>
+      </tr>
+      <tr>
+        <td>Pre-hoc Image<sup>3</sup></td>
+        <td>0.1524</td>
+        <td>7.65</td>
+        <td>27.04</td>
+        <td>11.27 ± 0.99</td>
+      </tr>
+      <tr class="ours">
+        <td><span style="font-variant: small-caps;">SuperGaussian</span> (ours)</td>
+        <td><b>0.1290</b></td>
+        <td><b>6.80</b></td>
+        <td><b>24.32</b></td>
+        <td><b>11.69 ± 1.08</b></td>
+      </tr>
+    </table>
+    <p>
+      <sup>1</sup> Haque et al., "Instruct-NeRF2NeRF: Editing 3D Scenes with Instructions", ICCV 2023 <br>
+      <sup>2</sup> Han et al., "Super-NeRF: View-Consistent Detail Generation for NeRF Super-Resolution", arXiv 2023 <br>
+      <sup>3</sup> Our customized baseline is similar to <span style="font-variant: small-caps;">SuperGaussian</span> except using SOTA image upsampler
+    </p>
+
+    <h3>Comparison on Blender-Synthetic to upsample low-res RGB</h3>
+    <p>
+      Here, we compare on ×4 upsampling from 200 × 200 to 800 × 800px. We compare our methods against baselines on the official test set using metrics reported in prior work. Our method produces on-par quantitative results. Besides, our results yield more generative details, which are not captured by the reference-based metrics. For a fair comparison against these baselines, we use Neural Radiance Field, i.e., TensoRF, as our 3D representation. Other baseline results are directly taken from their paper.
+    </p>
+    <table>
+      <tr>
+        <th>Method</th>
+        <th>LPIPS ↓</th>
+        <th>PSNR ↑</th>
+        <th>SSIM ↑</th>
+      </tr>
+      <tr>
+        <td>FastSR-NeRF<sup>4</sup></td>
+        <td>0.075</td>
+        <td><b>30.47</b></td>
+        <td><b>0.944</b></td>
+      </tr>
+      <tr>
+        <td>NeRF-SR<sup>5</sup></td>
+        <td>0.076</td>
+        <td>28.46</td>
+        <td>0.921</td>
+      </tr>
+      <tr class="ours">
+        <td><span style="font-variant: small-caps;">SuperGaussian</span> (ours)</td>
+        <td><b>0.067</b></td>
+        <td>28.44</td>
+        <td>0.923</td>
+      </tr>
+      
+    </table>
+    
+    <p>
+      <sup>4</sup> Lin et al., "FastSR-NeRF: Improving NeRF efficiency on consumer devices with a simple superresolution pipeline", WACV 2024 <br>
+      <sup>5</sup> Wang et al., "NeRF-SR: High-Quality Neural Radiance Fields using Supersampling", MM 2022
+    </p>
+  </div>  
+
+  
+  </details>
+  <details open>
+  <summary><span style="font-variant: small-caps;">SuperGaussian</span> Results on MVImgNet</summary>
+  <div class="section-content">
+  <p>The videos below show the <b>16× upsampling</b> result of our method (right) when applied to the low-resolution input (left). The videos are synchronized, such that the same frame is shown at the same time. We provide an interactive zoom lens to better appreciate the differences between low-res input and our output. The zoomed in views are enlarged by a factor of 2.5, showing the output at approximately the native video resolution (1024×1024px).</p><button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/backpack_thumb.png"/>backpack
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="backpack" class="backpack_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/backpack_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="backpack_zoom backpack_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/backpack_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="backpack_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/backpack_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="backpack_zoom backpack_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/backpack_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/unicorn backpack_thumb.png"/>unicorn backpack
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="unicorn backpack" class="unicorn backpack_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/unicorn backpack_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="unicorn backpack_zoom unicorn backpack_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/unicorn backpack_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="unicorn backpack_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/unicorn backpack_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="unicorn backpack_zoom unicorn backpack_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/unicorn backpack_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/flowers_1_thumb.png"/>flowers_1
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="flowers_1" class="flowers_1_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_1_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="flowers_1_zoom flowers_1_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_1_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="flowers_1_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_1_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="flowers_1_zoom flowers_1_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_1_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/flowers_2_thumb.png"/>flowers_2
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="flowers_2" class="flowers_2_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_2_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="flowers_2_zoom flowers_2_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_2_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="flowers_2_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_2_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="flowers_2_zoom flowers_2_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/flowers_2_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/shoes_1_thumb.png"/>shoes_1
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="shoes_1" class="shoes_1_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_1_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="shoes_1_zoom shoes_1_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_1_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="shoes_1_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_1_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="shoes_1_zoom shoes_1_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_1_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/striped_slippers_thumb.png"/>striped_slippers
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="striped_slippers" class="striped_slippers_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/striped_slippers_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="striped_slippers_zoom striped_slippers_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/striped_slippers_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="striped_slippers_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/striped_slippers_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="striped_slippers_zoom striped_slippers_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/striped_slippers_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/shoes_2_thumb.png"/>shoes_2
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="shoes_2" class="shoes_2_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_2_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="shoes_2_zoom shoes_2_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_2_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="shoes_2_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_2_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="shoes_2_zoom shoes_2_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/shoes_2_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/pineapple_thumb.png"/>pineapple
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="pineapple" class="pineapple_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/pineapple_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="pineapple_zoom pineapple_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/pineapple_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="pineapple_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/pineapple_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="pineapple_zoom pineapple_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/pineapple_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/sports_car_thumb.png"/>sports_car
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="sports_car" class="sports_car_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/sports_car_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="sports_car_zoom sports_car_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/sports_car_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="sports_car_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/sports_car_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="sports_car_zoom sports_car_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/sports_car_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/truck_thumb.png"/>truck
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="truck" class="truck_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/truck_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="truck_zoom truck_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/truck_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="truck_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/truck_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="truck_zoom truck_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/truck_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/wicker_bowl_thumb.png"/>wicker_bowl
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="wicker_bowl" class="wicker_bowl_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/wicker_bowl_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="wicker_bowl_zoom wicker_bowl_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/wicker_bowl_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="wicker_bowl_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/wicker_bowl_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="wicker_bowl_zoom wicker_bowl_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/wicker_bowl_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/basket_thumb.png"/>basket
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="basket" class="basket_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/basket_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="basket_zoom basket_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/basket_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="basket_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/basket_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="basket_zoom basket_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/basket_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/train_thumb.png"/>train
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="train" class="train_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/train_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="train_zoom train_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/train_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="train_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/train_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="train_zoom train_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/train_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/toy_plane_thumb.png"/>toy_plane
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="toy_plane" class="toy_plane_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_plane_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="toy_plane_zoom toy_plane_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_plane_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="toy_plane_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_plane_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="toy_plane_zoom toy_plane_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_plane_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/teddy_bear_thumb.png"/>teddy_bear
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="teddy_bear" class="teddy_bear_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/teddy_bear_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="teddy_bear_zoom teddy_bear_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/teddy_bear_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="teddy_bear_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/teddy_bear_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="teddy_bear_zoom teddy_bear_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/teddy_bear_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/plush_hedgehog_thumb.png"/>plush_hedgehog
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="plush_hedgehog" class="plush_hedgehog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/plush_hedgehog_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="plush_hedgehog_zoom plush_hedgehog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/plush_hedgehog_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="plush_hedgehog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/plush_hedgehog_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="plush_hedgehog_zoom plush_hedgehog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/plush_hedgehog_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/dragonfly_thumb.png"/>dragonfly
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="dragonfly" class="dragonfly_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dragonfly_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="dragonfly_zoom dragonfly_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dragonfly_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="dragonfly_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dragonfly_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="dragonfly_zoom dragonfly_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/dragonfly_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/toy_horse_thumb.png"/>toy_horse
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="toy_horse" class="toy_horse_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_horse_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="toy_horse_zoom toy_horse_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_horse_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="toy_horse_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_horse_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="toy_horse_zoom toy_horse_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/toy_horse_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/cute_tiger_thumb.png"/>cute_tiger
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="cute_tiger" class="cute_tiger_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/cute_tiger_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="cute_tiger_zoom cute_tiger_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/cute_tiger_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="cute_tiger_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/cute_tiger_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="cute_tiger_zoom cute_tiger_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/cute_tiger_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/donut_thumb.png"/>donut
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="donut" class="donut_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/donut_low_res.mp4" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="donut_zoom donut_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/donut_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="donut_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/donut_SuperGaussian.mp4" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (1024×1024)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="donut_zoom donut_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/donut_SuperGaussian.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary>Baseline Comparison on MVImgNet</summary>
+  <div class="section-content">
+  <p>Baseline comparison on 4× upsampling of low-res Gaussian Splats with several related methods.</p><button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Baseline_handbag_thumb.png"/>handbag
+  </div></div></button>
+  <div class="panel" style="display: block; height: 450px; padding: 5px 5px">
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video id="handbag_BS" class="handbag_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_low_res.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="handbag_BS_zoom handbag_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_low_res.mov" type="video/mp4">
+  </video>
+   <div class="bottom-left" style="padding-left: 5px; padding-bottom: 24px">3×</div>
+  </div>
+  <p class="caption">Low Resolution</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="handbag_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="handbag_BS_zoom handbag_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Instruct-NeRF2NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="handbag_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="handbag_BS_zoom handbag_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Super-NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="handbag_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="handbag_BS_zoom handbag_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Prehoc Image</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="handbag_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="handbag_BS_zoom handbag_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/handbag_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Ours</p>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Baseline_broccoli_thumb.png"/>broccoli
+  </div></div></button>
+  <div class="panel" style="display: block; height: 450px; padding: 5px 5px">
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video id="broccoli_BS" class="broccoli_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_low_res.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_zoom broccoli_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_low_res.mov" type="video/mp4">
+  </video>
+   <div class="bottom-left" style="padding-left: 5px; padding-bottom: 24px">3×</div>
+  </div>
+  <p class="caption">Low Resolution</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_zoom broccoli_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Instruct-NeRF2NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_zoom broccoli_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Super-NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_zoom broccoli_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Prehoc Image</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="broccoli_BS_zoom broccoli_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/broccoli_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Ours</p>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Baseline_lion_slipper_thumb.png"/>lion_slipper
+  </div></div></button>
+  <div class="panel" style="display: block; height: 450px; padding: 5px 5px">
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video id="lion_slipper_BS" class="lion_slipper_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_low_res.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_zoom lion_slipper_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_low_res.mov" type="video/mp4">
+  </video>
+   <div class="bottom-left" style="padding-left: 5px; padding-bottom: 24px">3×</div>
+  </div>
+  <p class="caption">Low Resolution</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_zoom lion_slipper_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Instruct-NeRF2NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_zoom lion_slipper_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Super-NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_zoom lion_slipper_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Prehoc Image</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="lion_slipper_BS_zoom lion_slipper_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/lion_slipper_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Ours</p>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Baseline_tiger_thumb.png"/>tiger
+  </div></div></button>
+  <div class="panel" style="display: block; height: 450px; padding: 5px 5px">
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video id="tiger_BS" class="tiger_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_low_res.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="tiger_BS_zoom tiger_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_low_res.mov" type="video/mp4">
+  </video>
+   <div class="bottom-left" style="padding-left: 5px; padding-bottom: 24px">3×</div>
+  </div>
+  <p class="caption">Low Resolution</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="tiger_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="tiger_BS_zoom tiger_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_ing2g.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Instruct-NeRF2NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="tiger_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="tiger_BS_zoom tiger_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_super_nerf.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Super-NeRF</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="tiger_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="tiger_BS_zoom tiger_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_prehoc_img.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Prehoc Image</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box five-block">
+  <video class="tiger_BS_group" width="213" height="213" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box five-block">
+  <video class="tiger_BS_zoom tiger_BS_group" width="639" height="639" padding="none" autoplay controls loop muted>
+  <source src="resources/Baseline/tiger_prehoc_video.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">Ours</p>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary><span style="font-variant: small-caps;">SuperGaussian</span> Results on Blender-Synthetic</summary>
+  <div class="section-content">
+  <p>We follow the same experiment protocol as prior work, i.e., NeRF-SR and FastSR-NeRF, and report performance for 4× upsampling in 3D. For fair comparison with other NeRF-based baselines, we reconstruct the upsampled video with TensoRF, a NeRF representation after video upsampling</p><button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/chair_thumb.png"/>chair
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="chair" class="chair_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/chair_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="chair_zoom chair_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/chair_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="chair_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/chair_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="chair_zoom chair_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/chair_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/drums_thumb.png"/>drums
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="drums" class="drums_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/drums_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="drums_zoom drums_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/drums_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="drums_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/drums_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="drums_zoom drums_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/drums_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/ficus_thumb.png"/>ficus
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="ficus" class="ficus_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ficus_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="ficus_zoom ficus_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ficus_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="ficus_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ficus_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="ficus_zoom ficus_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ficus_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/hotdog_thumb.png"/>hotdog
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="hotdog" class="hotdog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/hotdog_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="hotdog_zoom hotdog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/hotdog_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="hotdog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/hotdog_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="hotdog_zoom hotdog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/hotdog_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/mic_thumb.png"/>mic
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="mic" class="mic_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/mic_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="mic_zoom mic_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/mic_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="mic_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/mic_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="mic_zoom mic_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/mic_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/ship_thumb.png"/>ship
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="ship" class="ship_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ship_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge)">low-res (200×200)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="ship_zoom ship_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ship_low_res.mov" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="ship_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ship_SuperGaussian.mov" type="video/mp4">
+  </video>
+   <div class="top-left-2" style="padding-left: var(--edge)">3D Upsampled (800×800)</div>
+  </div>
+  <div class="vid-box two-block">
+  <video class="ship_zoom ship_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/SuperGaussian/ship_SuperGaussian.mov" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary>Superresolving Text-to-3D</summary>
+  <div class="section-content">
+  <p>Our method is able to improve the output of state-of-the-art text-to-3D models. Here, we show results of our method where we upsample objects generated by <a href="https://instant-3d.github.io/" target="_blank">Instant3D</a>.</p><button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Instant3D_dragon_thumb.png"/>dragon
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="dragon" class="dragon_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/dragon_low_res.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="dragon_zoom dragon_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/dragon_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="dragon_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/dragon_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="dragon_zoom dragon_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/dragon_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Instant3D_frog_thumb.png"/>frog
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="frog" class="frog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/frog_low_res.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="frog_zoom frog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/frog_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="frog_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/frog_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="frog_zoom frog_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/frog_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  <button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/Instant3D_mushroom_thumb.png"/>mushroom
+  </div></div></button>
+  <div class="panel" style="display: block; height: calc(2*var(--width)); padding: 5px var(--edge)">
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video id="mushroom" class="mushroom_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/mushroom_low_res.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="mushroom_zoom mushroom_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/mushroom_low_res.mp4" type="video/mp4">
+  </video> 
+   <div class="bottom-left" style="padding-left: var(--edge)">2.5×</div>
+  </div>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box two-block"> 
+  <video class="mushroom_group" width="410" height="410" autoplay controls loop muted>
+  <source src="resources/Instant3D/mushroom_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box two-block">
+  <video class="mushroom_zoom mushroom_group" width="1025.0" height="1025.0" padding="none" autoplay controls loop muted>
+  <source src="resources/Instant3D/mushroom_ours.mp4" type="video/mp4">
+  </video>
+  </div>
+  </div>
+  </div>
+  </div>
+  </details>
+  <details>
+  <summary>Multi-scale Upsampling</summary>
+  <div class="section-content">
+  <p>We show a comparison of multi-level upsampling by running our method iteratively (4× and 16×).</p><button class="accordion active"><div class="wrapper-box"><div class="box"><img src="resources/Thumbnails/insect_thumb.png"/>insect
+  </div></div></button>
+  <div class="panel" style="padding: 5px 2px; height: 738px;">
+  <div class="vid-container">
+  <div class="vid-box three-block">
+  <video id="insect" class="insect_group" width="357" height="357" autoplay controls loop muted>
+  <source src="resources/Resolution/0_low_res.mov" type="video/mp4">
+  </video>
+   <div class="top-left" style="padding-left: var(--edge_three)">low-res (64×64)</div>
+  </div>
+  <div class="vid-box three-block">
+  <video class="insect_zoom insect_group" width="892.5" height="892.5" padding="none" autoplay controls loop muted>
+  <source src="resources/Resolution/0_low_res.mov" type="video/mp4">
+  </video>
+   <div class="bottom-left" style="padding-left: 2px; padding-bottom: 24px">2.5×</div>
+  </div>
+  <p class="caption">low-res</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box three-block">
+  <video class="insect_group" width="357" height="357" autoplay controls loop muted>
+  <source src="resources/Resolution/1_256x256.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box three-block">
+  <video class="insect_zoom insect_group" width="892.5" height="892.5" padding="none" autoplay controls loop muted>
+  <source src="resources/Resolution/1_256x256.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">4×</p>
+  </div>
+  <div class="vid-container">
+  <div class="vid-box three-block">
+  <video class="insect_group" width="357" height="357" autoplay controls loop muted>
+  <source src="resources/Resolution/2_1024x1024.mov" type="video/mp4">
+  </video>
+  </div>
+  <div class="vid-box three-block">
+  <video class="insect_zoom insect_group" width="892.5" height="892.5" padding="none" autoplay controls loop muted>
+  <source src="resources/Resolution/2_1024x1024.mov" type="video/mp4">
+  </video>
+  </div>
+  <p class="caption">16×</p>
+  </div>
+  </div>
+  </div>
+  </details>
+  <script>
+  var acc = document.getElementsByClassName('accordion');
+  var i;
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener('click', function() {
+      this.classList.toggle('active');
+      var panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  }
+  
+  function playSync(vidID) {
+      resultClass = vidID + "_group";
+      var videos = document.getElementsByClassName(resultClass);
+  
+      for (var i = 0; i < videos.length; i++) {
+          v = videos.item(i)
+  
+          rest = []
+          for (var j = 0; j < videos.length; j++) {
+              if (j != i) {
+                  rest.push(videos.item(j))
+              }
+          }
+          v.addEventListener(
+              'play', 
+              function() { 
+                  v.play();
+                  for (var j = 0; j < rest.length; j++) {
+                      rest[j].play();
+                  }
+              }, 
+              false);
+  
+          v.onclick = function() {
+              if (v.paused) {
+                  v.play();
+                  for (var j = 0; j < rest.length; j++) {
+                      rest[j].play();
+                  }
+              } else {
+                  v.pause();
+                  for (var j = 0; j < rest.length; j++) {
+                      rest[j].pause();
+                  }
+              }
+  
+              return false;
+          };
+      }
+  }
+  
+  
+  function videoZoom(vidID, factor=2, edgeLeft=0, edgeTop=0) {
+    var vid, lens, result, cx, cy;
+    vid = document.getElementById(vidID);
+    resultClass = vidID + "_zoom";
+    result = document.getElementsByClassName(resultClass);
+    /* Create lens: */
+    lens = document.createElement("DIV");
+    lens.setAttribute("class", "vid-zoom-lens");
+    /* Insert lens: */
+    vid.parentElement.insertBefore(lens, vid);
+  
+    sz = vid.width;
+    initPos = (sz - (sz / factor)) / 2;
+    /* Init lens and zoom video at center: */
+    x = y = initPos
+    console.log("setting up lens for " +vidID+ " at " + x + ", " + y + ", size " +sz);
+    lens.style.width = (sz / factor) + "px";
+    lens.style.height = (sz / factor) + "px";
+    lens.style.left = x + "px";
+    lens.style.top = y + "px";
+    lens.style.marginLeft = edgeLeft + "px"; 
+    lens.style.marginTop = edgeTop + "px"; 
+  
+    for (var i = 0; i < result.length; i++) {
+        /* Display what the lens "sees": */
+        result.item(i).style.marginLeft = "-" + (x * factor) + "px"
+        result.item(i).style.marginTop = "-" + (y * factor) + "px";
+      }
+    /* Calculate the ratio between result DIV and lens: */
+    
+    /* Set background properties for the result DIV */
+    // result.style.backgroundImage = "url('" + img.src + "')";
+    // result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+    /* Execute a function when someone moves the cursor over the image, or the lens: */
+    lens.addEventListener("mousemove", moveLens);
+    vid.addEventListener("mousemove", moveLens);
+    /* And also for touch screens: */
+    lens.addEventListener("touchmove", moveLens);
+    vid.addEventListener("touchmove", moveLens);
+    function moveLens(e) {
+      var pos, x, y;
+      /* Prevent any other actions that may occur when moving over the image */
+      e.preventDefault();
+      /* Get the cursor's x and y positions: */
+      pos = getCursorPos(e);
+      /* Calculate the position of the lens: */
+      x = pos.x - (lens.offsetWidth / 2);
+      y = pos.y - (lens.offsetHeight / 2);
+      /* Prevent the lens from being positioned outside the image: */
+      min_x = vid.width - lens.offsetWidth
+      if (x > min_x) {x = min_x;}
+      if (x < 0) {x = 0;}
+      if (y > vid.height - lens.offsetHeight) {y = vid.height - lens.offsetHeight;}
+      if (y < 0) {y = 0;}
+      /* Set the position of the lens: */
+      lens.style.left = x + "px";
+      lens.style.top = y + "px";
+      for (var i = 0; i < result.length; i++) {
+        /* Display what the lens "sees": */
+        result.item(i).style.marginLeft = "-" + (x * factor) + "px"
+        result.item(i).style.marginTop = "-" + (y * factor) + "px";
+      }
+      
+    }
+    function getCursorPos(e) {
+      var a, x = 0, y = 0;
+      e = e || window.event;
+      /* Get the x and y positions of the image: */
+      a = vid.getBoundingClientRect();
+      /* Calculate the cursor's x and y coordinates, relative to the image: */
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /* Consider any page scrolling: */
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return {x : x, y : y};
+    }
+  }
+  
+  // Fetch all the details element.
+  const details = document.querySelectorAll("details");
+  
+  // Add the onclick listeners.
+  details.forEach((detail) => {
+    detail.addEventListener("toggle", () => {
+      if (detail.open) setTargetDetail(detail);
+    });
+  });
+  
+  // Close all the details that are not targetDetail.
+  function setTargetDetail(targetDetail) {
+    details.forEach((detail) => {
+      if (detail !== targetDetail) {
+        detail.open = false;
+      } else {
+        detail.open = true;
+        detail.scrollIntoView();
+      }
+    });
+  }
+  
+  // function trackLocation(e) {
+  //   var rect = videoContainer.getBoundingClientRect(),
+  //       position = ((e.pageX - rect.left) / videoContainer.offsetWidth)*100;
+  //   if (position <= 100) { 
+  //     videoClipper.style.width = position+"%";
+  //     clippedVideo.style.width = ((100/position)*100)+"%";
+  //     clippedVideo.style.zIndex = 3;
+  //  }
+  // }
+  // var videoContainer = document.getElementById("video-compare-container"),
+  // videoClipper = document.getElementById("video-clipper"),
+  // clippedVideo = videoClipper.getElementsByTagName("video")[0];
+  // videoContainer.addEventListener( "mousemove", trackLocation, false); 
+  // videoContainer.addEventListener("touchstart",trackLocation,false);
+  // videoContainer.addEventListener("touchmove",trackLocation,false);
+  
+  videoZoom("backpack", 2.5, 128, 5)
+  videoZoom("unicorn backpack", 2.5, 128, 5)
+  videoZoom("flowers_1", 2.5, 128, 5)
+  videoZoom("flowers_2", 2.5, 128, 5)
+  videoZoom("shoes_1", 2.5, 128, 5)
+  videoZoom("striped_slippers", 2.5, 128, 5)
+  videoZoom("shoes_2", 2.5, 128, 5)
+  videoZoom("pineapple", 2.5, 128, 5)
+  videoZoom("sports_car", 2.5, 128, 5)
+  videoZoom("truck", 2.5, 128, 5)
+  videoZoom("wicker_bowl", 2.5, 128, 5)
+  videoZoom("basket", 2.5, 128, 5)
+  videoZoom("train", 2.5, 128, 5)
+  videoZoom("toy_plane", 2.5, 128, 5)
+  videoZoom("teddy_bear", 2.5, 128, 5)
+  videoZoom("plush_hedgehog", 2.5, 128, 5)
+  videoZoom("dragonfly", 2.5, 128, 5)
+  videoZoom("toy_horse", 2.5, 128, 5)
+  videoZoom("cute_tiger", 2.5, 128, 5)
+  videoZoom("donut", 2.5, 128, 5)
+  videoZoom("chair", 2.5, 128, 5)
+  videoZoom("drums", 2.5, 128, 5)
+  videoZoom("ficus", 2.5, 128, 5)
+  videoZoom("hotdog", 2.5, 128, 5)
+  videoZoom("mic", 2.5, 128, 5)
+  videoZoom("ship", 2.5, 128, 5)
+  videoZoom("dragon", 2.5, 128, 5)
+  videoZoom("frog", 2.5, 128, 5)
+  videoZoom("mushroom", 2.5, 128, 5)
+  videoZoom("handbag_BS", 3, 5, 5)
+  videoZoom("tiger_BS", 3, 5, 5)
+  videoZoom("lion_slipper_BS", 3, 5, 5)
+  videoZoom("broccoli_BS", 3, 5, 5)
+  videoZoom("insect", 2.5, 2, 5)
+  </script>
+  </body>
+  </html>
