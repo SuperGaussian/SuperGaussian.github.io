@@ -3,9 +3,9 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
   <script type="text/x-mathjax-config">
     MathJax = {
       tex: {
@@ -38,7 +38,7 @@
     body {
       font-family: IBM Plex Sans, sans-serif;
       padding: 20px 0;
-      font-size: 14pt;
+      font-size: 13.5pt;
       font-weight: 100;
       line-height: 1.3em;
       hyphens: auto;
@@ -58,19 +58,22 @@
       font-variant: small-caps;
   } */
 
-
+    h1, h2 {
+      font-family: Inter Tight, cursive;
+    }
+    
     h1,
     h2,
     h3 {
-      /* font-family: Lilita One, cursive; */
-      font-weight: 500;
+      font-family: Inter Tight, cursive;
+      font-weight: 400;
       text-align: center;
     }
 
     .section-title,
     details>summary {
       padding: 0.3em 0.5em;
-      font-weight: 500;
+      font-weight: 400;
       text-align: left;
       font-size: 1.3em;
       background-color: var(--box-color);
@@ -249,7 +252,7 @@
       padding: 0.1em 0;
       margin: 0;
       font-size: 0.8em;
-      font-weight: 500;
+      font-weight: 400;
       text-align: center;
     }
 
@@ -266,7 +269,7 @@
       bottom: 8px;
       left: 8px;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 400;
       color: #fff;
       text-shadow: 1px 1px 2px #444;
     }
@@ -276,7 +279,7 @@
       top: 8px;
       left: 8px;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 400;
       color: #fff;
       text-shadow: 1px 1px 2px #444;
     }
@@ -286,7 +289,7 @@
       left: calc(var(--width) + 8px);
       top: 8px;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 400;
       color: #fff;
       text-shadow: 1px 1px 2px #444;
     }
@@ -397,24 +400,22 @@
 </head>
 
 <body>
-  <div class="panel" style="display: block; border: none; height: 320px; padding: 5px var(--edge)">
+  <div class="panel" style="display: block; border: none; height: 370px; padding: 5px var(--edge)">
     <h1><span style="font-variant: small-caps;">SuperGaussian</span>:</h1>
     <h2>Repurposing Video Models for 3D Super Resolution</h2>
     <h3>ECCV 2024</h3>
     <h3>
-      <a href="https://yshen47.github.io/" target="_blank">Yuan Shen</a><sup>1,2</sup>, 
-      <a href="https://www.duygu-ceylan.com" target="_blank">Duygu Ceylan</a><sup>2</sup>, 
-      <a href="http://paulguerrero.net" target="_blank">Paul Guerrero</a><sup>2</sup>, 
-      <a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>2</sup>, 
-      <a href="http://www0.cs.ucl.ac.uk/staff/n.mitra/" target="_blank">Niloy J. Mitra</a><sup>2, 3</sup>, 
-      <a href="https://shenlong.web.illinois.edu/" target="_blank">Shenlong Wang</a><sup>1</sup>, 
-      and <a href=https://afruehstueck.github.io target="_blank">Anna Frühstück</a><sup>2</sup>
+      <a href="https://yshen47.github.io/" target="_blank">Yuan&nbsp;Shen</a><sup>1,2</sup>, 
+      <a href="https://www.duygu-ceylan.com" target="_blank">Duygu&nbsp;Ceylan</a><sup>2</sup>, 
+      <a href="http://paulguerrero.net" target="_blank">Paul&nbsp;Guerrero</a><sup>2</sup>, 
+      <a href="https://zexiangxu.github.io/" target="_blank">Zexiang&nbsp;Xu</a><sup>2</sup>, <br>
+      <a href="http://www0.cs.ucl.ac.uk/staff/n.mitra/" target="_blank">Niloy&nbsp;J.&nbsp;Mitra</a><sup>2,3</sup>, 
+      <a href="https://shenlong.web.illinois.edu/" target="_blank">Shenlong&nbsp;Wang</a><sup>1</sup>, 
+      and <a href=https://afruehstueck.github.io target="_blank">Anna&nbsp;Frühstück</a><sup>2</sup>
     </h3>
-    <p> 1. University of Illinois at Urbana Champaign &nbsp &nbsp &nbsp 2. Adobe Research &nbsp &nbsp &nbsp 3.
-      University College London</p>
+    <p style="text-align: center;"><sup>1</sup>University of Illinois at Urbana Champaign &nbsp &nbsp &nbsp <sup>2</sup>Adobe Research &nbsp &nbsp &nbsp <sup>3</sup>University College London</p>
       <p class="warning" style="text-align: center; font-size: 90%">⚠️&nbsp;This page contains a large number of videos.
         If they don't play or go out of sync, please reload.<br>We recommend to use Chrome as your browser.</p>
-      
   </div>
   <div class="panel" style="display: block; border: none; height: 580px; padding: 5px var(--edge)">
     <div class="vid-container">
@@ -504,10 +505,10 @@
     </a>
   </div>
   <div class="panel" style="height: 120px; border: none;">
-    <p class="citation">@article{Shen2024SuperGaussian,<br>
+    <p class="citation">@inproceedings{Shen2024SuperGaussian,<br>
       &nbsp;&nbsp;title = {SuperGaussian: Repurposing Video Models for 3D Super Resolution},<br>
-      &nbsp;&nbsp;author = {Shen, Yuan and Ceylan, Duygu and Guerrero, Paul and Xu, Zexiang and Mitra, {Niloy J.} and Wang, Shenlong and Fr{\"u}hst{\"u}ck, Anna},<br>
-      &nbsp;&nbsp;journal = {arXiv preprint arXiv:2406.00609},<br>
+      &nbsp;&nbsp;author = {Shen,&nbsp;Yuan and Ceylan,&nbsp;Duygu and Guerrero,&nbsp;Paul and Xu,&nbsp;Zexiang and Mitra,&nbsp;{Niloy J.} and Wang,&nbsp;Shenlong and Fr{\"u}hst{\"u}ck,&nbsp;Anna},<br>
+      &nbsp;&nbsp;booktitle = {European Conference on Computer Vision (ECCV)},<br>
       &nbsp;&nbsp;year = {2024},<br>
      }
      </p>
